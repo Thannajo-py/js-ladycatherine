@@ -43,9 +43,11 @@ function Test_end(){
 
     document.getElementById('score').innerHTML = score
     document.getElementById('comment').innerHTML = result_comment
-    validate_button.setAttribute('disabled')
+    validate_button.setAttribute('disabled',"")
 
 }
+
+
 answer = [['1', 1], ['2', 2], ['3', 9], ['4', 12], ['5', 5], ['6', 12], ['7', 21], ['8', 8], ['9', 18], ['10', 30], ['11', 33], ['12', 36], ['13', 26], ['14', 42], ['15', 15], ['16', 48], ['17', 51], ['18', 18], ['19', 19], ['20', 20], ['21', 42], ['22', 22], ['23', 46], ['24', 72], ['25', 75], ['26', 52], ['27', 27], ['28', 28], ['29', 87], ['30', 30], ['31', 93], ['32', 32], ['33', 99], ['34', 68], ['35', 35], ['36', 108], ['37', 111], ['38', 76], ['39', 78], ['40', 40], ['41', 41], ['42', 126], ['43', 43], ['44', 44], ['45', 90], ['46', 92], ['47', 47], ['48', 144], ['49', 147], ['50', 150], ['51', 102], ['52', 52], ['53', 159], ['54', 108], ['55', 55], ['56', 168], ['57', 114], ['58', 116], ['59', 59], ['60', 120], ['61', 183], ['62', 62], ['63', 126], ['64', 192], ['65', 65], ['66', 198], ['67', 201], ['68', 204], ['69', 138], ['70', 140]]
 
 type_answer = ' ABCD'
@@ -54,6 +56,6 @@ audio.addEventListener('click',function(){
     document.getElementById('audio').innerHTML="<audio controls id ='audio'><source src='questions_68_69_70.mp3'></audio>"
     setTimeout(function(){document.getElementById('audio').innerHTML='';audio.setAttribute('disabled','')},90000)
 })
-validate_button = document.getElementById("")
-validate_button.addEventListener('click',Test_end())
-setTimeout(Test_end(),3600000)
+validate_button = document.getElementById("validate")
+validate_button.addEventListener('click',Test_end)
+setTimeout(Test_end,3600000)
