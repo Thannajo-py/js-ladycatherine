@@ -1,0 +1,15 @@
+body{
+    display:flex;
+}
+body > button {
+    align-self:center;
+    font-size: 30px;
+}
+h1{
+    text-align: center;
+}
+#FormBody{
+    width: 80%;
+    
+}
+
