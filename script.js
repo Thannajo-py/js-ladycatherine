@@ -51,10 +51,13 @@ answer = [['1', 1], ['2', 2], ['3', 9], ['4', 12], ['5', 5], ['6', 12], ['7', 21
 
 type_answer = ' ABCD'
 audio = document.getElementById('audio2')
-audio.addEventListener('click',function(){
-    document.getElementById('audio').innerHTML="<audio controls id ='audio'><source src='questions_68_69_70.mp3'></audio>"
-    setTimeout(function(){document.getElementById('audio').innerHTML='';audio.setAttribute('disabled','')},90000)
-})
+function Play(){
+    audio.removeEventListener('click',Play)
+    audio.setAttribute('disabled','')
+    audio_question = new Audio('questions_68_69_70.mp3')
+    audio_question.play()
+}
+audio.addEventListener('click',Play)
 validate_button = document.getElementById("validate")
 validate_button.addEventListener('click',Test_end)
 setTimeout(Test_end,3600000)
