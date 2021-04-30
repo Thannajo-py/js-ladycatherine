@@ -10,7 +10,6 @@ function Test_end(){
         }
 
     }
-    
     if (score <= 12){
         result_comment = "12 or below <br> \
         ELEMENTARY → A1 TOEIC 120 pts <br> \
@@ -41,8 +40,8 @@ function Test_end(){
         Peut  comprendre  une  grande  gamme  de  textes  longs  et  exigeants,  ainsi  que  saisir  des  significations  implicites.  Peut  s’exprimer spontanément et couramment sans trop apparemment devoir chercher ses mots. Peut utiliser la langue de façon efficace et souple dans sa vie sociale, professionnelle ou académique. Peut s’exprimer sur des sujets complexes de façon claire et bien structurée et manifester son contrôle des outils d’organisation, d’articulation et de cohésion du discours."
     }
 
-    document.getElementById('score').innerHTML = score
-    document.getElementById('comment').innerHTML = result_comment
+    document.getElementById('score').innerHTML = "<div id='score_result'>"+score+"</div>"
+    document.getElementById('comment').innerHTML = "<div id='result_result'>"+result_comment+"</div>"
     validate_button.setAttribute('disabled',"")
 
 }
@@ -59,3 +58,34 @@ audio.addEventListener('click',function(){
 validate_button = document.getElementById("validate")
 validate_button.addEventListener('click',Test_end)
 setTimeout(Test_end,3600000)
+
+for (i=1;i<71;i++){
+    character='ABCD'
+    for (j = 0; j < 4; j++){
+        id='q'+i+character[j]
+        if (document.getElementById(id)){
+            document.getElementById(id).addEventListener('click',function(){
+                this.parentElement.style.backgroundColor = '#cecece'
+            })
+        }
+        
+        
+    }
+}
+let audio_ant = new Audio('anthem.mp3');
+function Play_video(){
+    audio_ant.play();
+    play=true
+    document.removeEventListener('click',Play_video)
+    document.getElementById('banniere').addEventListener('click',Pause_video)
+}
+
+function Pause_video(){
+    audio_ant.pause();
+    document.getElementById('banniere').removeEventListener('click',Pause_video)
+    document.getElementById('banniere').addEventListener('click',Play_video)
+
+}
+document.getElementById('banniere').addEventListener('click',Play_video)
+document.getElementById('banniere').addEventListener('over',function(){})
+
