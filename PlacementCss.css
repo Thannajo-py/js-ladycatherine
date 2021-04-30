@@ -82,9 +82,6 @@ h2{
     padding: 0 2%;
 }
 
-/* .border:hover {
-    background-image: unset;
-} */
 
 form > div  {
     border: 1px solid rgb(38, 46, 85);
@@ -130,6 +127,12 @@ div:nth-of-type(64) > div > button {
     background-image: linear-gradient(to bottom, white, rgb(235, 235, 235));
 } 
 
+tr >td:last-child:not(td[colspan='3']){
+    text-align: right;
+}
+tr > td[colspan='3']{
+    text-align: center;
+}
 
 /* Footer */
 
@@ -182,4 +185,5 @@ footer{
 }
 
 }
+
 

@@ -87,5 +87,7 @@ function Pause_video(){
 
 }
 document.getElementById('banniere').addEventListener('click',Play_video)
-document.getElementById('banniere').addEventListener('over',function(){})
+document.getElementById('banniere').addEventListener("mouseover",function(){
+    document.getElementById("banniere").style.cursor = "pointer";
+})
 
