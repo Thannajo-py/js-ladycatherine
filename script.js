@@ -1,23 +1,40 @@
 function Test_end(){
     score = 0
-    fetch("http://127.0.0.1:8000/")
-    .then(function(res) {
+    answer_list = ''
+    possible = 'ABCD'
+    for(i = 1; i<71 ; i++){
+        for (j = 0; j < possible.length;j++){
+            check = document.getElementById('q'+i+possible[j])
+            if (check && check.checked==true){
+                answer_list+=possible[j]
+                break
+            } else if (j==possible.length-1){
+                answer_list+='X'
+            }
+        }
+
+    
+    }fetch('http://127.0.0.1:8000', {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(answer_list) // body data type must match "Content-Type" header
+      })
+      .then(function(res) {
         if (res.ok) {
         return res.json();
-        }
+      }
     })
-    .then(function(value) {
-        answer = value
-        for(i = 1; i<71 ; i++){
-            ans = answer[i-1][1]/parseInt(answer[i-1][0])
-            ans = type_answer[ans]
-            id = 'q'+i+ans
-            good_answer = document.getElementById(id)
-            if (good_answer.checked == true){
-                score +=1
-            }
-    
-        }
+      .then(function(value) {
+        console.log(value);
+        score = value
         if (score <= 12){
             result_comment = "12 or below <br> \
             ELEMENTARY → A1 TOEIC 120 pts <br> \
@@ -51,10 +68,11 @@ function Test_end(){
         document.getElementById('score').innerHTML = "<div id='score_result'>"+score+"</div>"
         document.getElementById('comment').innerHTML = "<div id='result_result'>"+result_comment+"</div>"
         validate_button.setAttribute('disabled',"")
-    
     })
+
     
 }
+    
 
 
 
