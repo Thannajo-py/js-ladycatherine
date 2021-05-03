@@ -15,17 +15,16 @@ function Test_end(){
 
     
     }fetch('http://127.0.0.1:8000', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
+        method: 'POST',
+        mode: 'cors', 
+        cache: 'no-cache',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json'
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(answer_list) // body data type must match "Content-Type" header
+        redirect: 'follow', 
+        referrerPolicy: 'no-referrer', 
+        body: JSON.stringify({'name':student_name,'id':student_id,'test':'placement_test','answer':answer_list})
       })
       .then(function(res) {
         if (res.ok) {
@@ -33,8 +32,10 @@ function Test_end(){
       }
     })
       .then(function(value) {
-        console.log(value);
-        score = value
+        score = value['score']
+        if (score == undefined){
+            score = 'Error. Try Again'
+        }
         if (score <= 12){
             result_comment = "12 or below <br> \
             ELEMENTARY → A1 TOEIC 120 pts <br> \
@@ -72,18 +73,37 @@ function Test_end(){
 
     
 }
-    
 
 
-
-type_answer = ' ABCD'
-audio = document.getElementById('audio2')
 function Play(){
     audio.removeEventListener('click',Play)
     audio.setAttribute('disabled','')
     audio_question = new Audio('questions_68_69_70.mp3')
     audio_question.play()
 }
+
+
+function Play_video(){
+    audio_ant.play();
+    play=true
+    document.removeEventListener('click',Play_video)
+    document.getElementById('banniere').addEventListener('click',Pause_video)
+}
+
+
+function Pause_video(){
+    audio_ant.pause();
+    document.getElementById('banniere').removeEventListener('click',Pause_video)
+    document.getElementById('banniere').addEventListener('click',Play_video)
+
+}
+
+
+student_name = 'test'
+student_id = 'test'
+// type_answer = ' ABCD'
+audio = document.getElementById('audio2')
+
 audio.addEventListener('click',Play)
 validate_button = document.getElementById("validate")
 validate_button.addEventListener('click',Test_end)
@@ -103,19 +123,7 @@ for (i=1;i<71;i++){
     }
 }
 let audio_ant = new Audio('anthem.mp3');
-function Play_video(){
-    audio_ant.play();
-    play=true
-    document.removeEventListener('click',Play_video)
-    document.getElementById('banniere').addEventListener('click',Pause_video)
-}
 
-function Pause_video(){
-    audio_ant.pause();
-    document.getElementById('banniere').removeEventListener('click',Pause_video)
-    document.getElementById('banniere').addEventListener('click',Play_video)
-
-}
 document.getElementById('banniere').addEventListener('click',Play_video)
 document.getElementById('banniere').addEventListener("mouseover",function(){
     document.getElementById("banniere").style.cursor = "pointer";
