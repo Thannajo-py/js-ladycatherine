@@ -8,8 +8,10 @@ body{
     background-image: linear-gradient(to bottom, rgb(194, 166, 144), rgb(238, 223, 206));
 }
 
-body > button {
-    align-self:center;
+#validate_button {
+    text-align: center;
+}
+#validate {
     width :20%;
     height: 50px;
     border-radius: 20px;
@@ -157,7 +159,7 @@ form > div:hover{
 /* Petite résolution */
 @media only screen and (max-width: 800px){
 
-body > button {
+#validate {
     width :60%;
     margin-top: 10%;
 }

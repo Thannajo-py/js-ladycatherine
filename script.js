@@ -1,4 +1,5 @@
 function Test_end(){
+    validate_button.setAttribute('disabled',"")
     score = 0
     answer_list = ''
     possible = 'ABCD'
@@ -14,7 +15,7 @@ function Test_end(){
         }
 
     
-    }fetch('http://127.0.0.1:8000', {
+    }fetch('https://lady-catherine-test-center.herokuapp.com/', {
         method: 'POST',
         mode: 'cors', 
         cache: 'no-cache',
@@ -35,6 +36,7 @@ function Test_end(){
         score = value['score']
         if (score == undefined){
             score = 'Error. Try Again'
+            validate_button.removeAttribute('disabled')
         }
         if (score <= 12){
             result_comment = "12 or below <br> \
@@ -68,13 +70,20 @@ function Test_end(){
     
         document.getElementById('score').innerHTML = "<div id='score_result'>"+score+"</div>"
         document.getElementById('comment').innerHTML = "<div id='result_result'>"+result_comment+"</div>"
-        validate_button.setAttribute('disabled',"")
+        
     })
-
-    
+    .catch((error) => {
+        document.getElementById('wrong_id').innerHTML = 'servor error try again'
+        validate_button.removeAttribute('disabled')
+      });    
 }
 
 
+function Test_end_button(){
+    Test_end()
+    clearTimeout(timer)
+
+}
 function Play(){
     audio.removeEventListener('click',Play)
     audio.setAttribute('disabled','')
@@ -99,33 +108,70 @@ function Pause_video(){
 }
 
 
-student_name = 'test'
-student_id = 'test'
-// type_answer = ' ABCD'
-audio = document.getElementById('audio2')
-
-audio.addEventListener('click',Play)
-validate_button = document.getElementById("validate")
-validate_button.addEventListener('click',Test_end)
-setTimeout(Test_end,3600000)
-
-for (i=1;i<71;i++){
-    character='ABCD'
-    for (j = 0; j < 4; j++){
-        id='q'+i+character[j]
-        if (document.getElementById(id)){
-            document.getElementById(id).addEventListener('click',function(){
-                this.parentElement.style.backgroundColor = '#cecece'
-            })
+validate_student_button = document.getElementById('validate_student')
+validate_student_button.addEventListener('click', function(){
+    validate_student_button.setAttribute('disabled','')
+    student_name = document.getElementById('student_name').value
+    student_id = document.getElementById('student_id').value
+    test_name = 'placement_test'
+    fetch('https://lady-catherine-test-center.herokuapp.com/authentication/', {
+    method: 'POST',
+    mode: 'cors', 
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    redirect: 'follow', 
+    referrerPolicy: 'no-referrer', 
+    body: JSON.stringify({'name':student_name,'id':student_id,'test':test_name})
+  })
+  .then(function(res) {
+    if (res.ok) {
+    return res.json();
+  }
+})
+  .then(function(value) {
+      if (value['validation'] == 'correct'){
+        console.log(value)
+        console.log(document.getElementById('test_content'))
+        document.getElementById('test_content').innerHTML = value['body']
+        audio = document.getElementById('audio2')
+        audio.addEventListener('click',Play)
+        validate_button = document.getElementById("validate")
+        validate_button.addEventListener('click',Test_end_button)
+        timer = setTimeout(Test_end,3600000)
+        
+        for (i=1;i<71;i++){
+            character='ABCD'
+            for (j = 0; j < 4; j++){
+                id='q'+i+character[j]
+                if (document.getElementById(id)){
+                    document.getElementById(id).addEventListener('click',function(){
+                        this.parentElement.style.backgroundColor = '#cecece'
+                    })
+                }
+                
+                
+            }
         }
         
         
-    }
-}
-let audio_ant = new Audio('anthem.mp3');
+        document.getElementById('banniere').addEventListener('click',Play_video)
+        document.getElementById('banniere').addEventListener("mouseover",function(){
+            document.getElementById("banniere").style.cursor = "pointer";
+        })
+        
+        
 
-document.getElementById('banniere').addEventListener('click',Play_video)
-document.getElementById('banniere').addEventListener("mouseover",function(){
-    document.getElementById("banniere").style.cursor = "pointer";
+      }else{
+          document.getElementById('wrong_id').innerHTML = value['body']
+          validate_student_button.removeAttribute('disabled')
+      }
+  })
+  .catch((error) => {
+    document.getElementById('wrong_id').innerHTML = 'servor error try again'
+    validate_student_button.removeAttribute('disabled')
+  });
 })
-
+let audio_ant = new Audio('anthem.mp3');
