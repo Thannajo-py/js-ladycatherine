@@ -1,0 +1,191 @@
+/* Général */
+body{
+    margin: 0;
+    display:flex;
+    flex-direction: column;
+    font-family: 'Roboto', arial, sans-serif;
+    text-shadow: lightgrey 1px 1px 1px;
+    background-image: linear-gradient(to bottom, rgb(194, 166, 144), rgb(238, 223, 206));
+}
+
+#validate_button {
+    text-align: center;
+}
+#validate {
+    width :20%;
+    height: 50px;
+    border-radius: 20px;
+    font-size:2em;
+    box-shadow: rgb(38, 46, 85) 0 5px 5px;
+    margin-top: 3%;
+
+}
+
+button:hover{
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(148, 174, 214));
+}
+
+#bloc_page{
+    border: 2px solid black;
+    border-radius: 15px;
+    width: 80%;
+    margin: auto;
+    margin-top: 1%;
+    padding: 2%;
+    box-shadow: rgb(38, 46, 85) 0 0 50px;
+    background-image: linear-gradient(to bottom, white, rgb(235, 235, 235));
+}
+
+/* Header */
+
+h1{
+    text-align: center;
+    font-size: 3em;
+    font-family: impact;
+    color: rgb(38, 46, 85);
+    border: 2px solid rgb(38, 46, 85);
+    box-shadow: rgb(38, 46, 85) 5px 5px 5px;
+    border-radius: 15px;
+    padding: 1% 0 1% 0;
+    background-image: linear-gradient(to bottom, rgb(231, 231, 231), rgb(209, 178, 155));
+    text-shadow: white 0 0 10px;
+}
+
+#banniere{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 5%;
+    border: 0 solid rgb(38, 46, 85);
+    box-shadow: rgb(38, 46, 85) 0 5px 20px;
+    border-radius: 15px;
+}
+
+/* Page */
+
+h2{
+    font: 2em;
+    font-weight: bold;
+    color: rgb(38, 46, 85);
+    text-align: center;
+    box-shadow: 0 2px 15px;
+    border-radius: 20px;
+    padding: 0.5%;
+    margin: 0 1.5% 1% 1.5%;
+}
+
+#audio2 + p {
+    color:red;
+}
+.border {
+    border:2px solid black;
+    border-radius:20px;
+    background-image: linear-gradient(to bottom, rgba(231, 231, 231, 0.623), rgba(194, 166, 144, 0.562));
+    padding: 0 2%;
+}
+
+
+form > div  {
+    border: 1px solid rgb(38, 46, 85);
+    box-shadow: 2px 2px 5px rgb(194, 166, 144);
+    width: 45%;
+    margin: 1%;
+    border-radius: 15px;
+    padding: 0.5% 1% 2% 1%;
+
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#audio {
+    border:none;
+    box-shadow: none;
+    text-align:center;
+}
+div:nth-of-type(64) > div:first-of-type {
+    display:flex;
+    flex-direction: column;
+}
+
+div:nth-of-type(64) > div > button {
+    width:33%;
+    align-self: center;
+    height:50px;
+    border-radius:20px;
+    margin-top: 2%;
+}
+
+#result_result {
+    border: 2px solid black;
+    border-radius: 15px;
+    width: 80%;
+    margin: auto;
+    margin-top: 1%;
+    padding: 2%;
+    box-shadow: rgb(38, 46, 85) 0 0 50px;
+    background-image: linear-gradient(to bottom, white, rgb(235, 235, 235));
+} 
+
+tr >td:last-child:not(td[colspan='3']){
+    text-align: right;
+}
+tr > td[colspan='3']{
+    text-align: center;
+}
+
+/* Footer */
+
+footer{
+    background-image: radial-gradient(circle at center, rgb(255, 255, 255), rgb(38, 46, 85));
+    border: solid 2px rgb(38, 46, 85);
+    text-align: center;
+    border-radius: 30px 30px 0 0;
+    padding: 1%;
+    box-shadow: rgb(38, 46, 85) 5px 5px 5px;
+}
+
+h4{
+    font-size: 1.1em;
+    text-shadow: white 0 0 10px;
+}
+form > div:hover{
+    background-image: linear-gradient(to bottom, rgba(231, 231, 231, 0.623), rgba(194, 166, 144, 0.562));
+}
+
+
+/* Petite résolution */
+@media only screen and (max-width: 800px){
+
+#validate {
+    width :60%;
+    margin-top: 10%;
+}
+
+h1{
+    margin-top: 0;
+}
+
+#bloc_page{
+    width: 92%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form div{
+    width: auto;
+    padding: 5%;
+}
+
+footer{
+    padding-bottom: 5%;
+}
+
+}
+
+
