@@ -98,10 +98,6 @@ function Test_end() {
             }
             document.getElementById("main_title").scrollIntoView();
         });
-    // .catch((error) => {
-    //     document.getElementById('wrong_id').innerHTML = 'servor error try again'
-    //     validate_button.removeAttribute('disabled')
-    // });
 }
 function Test_end_button() {
     Test_end();
