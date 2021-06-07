@@ -205,6 +205,29 @@ tr > td[colspan='3']{
     text-align: center;
 }
 
+#clock_container {
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    top:0;
+    left:0;
+    animation: timer_color 3600s linear 1;
+    border-radius: 50px;
+}
+
+#clock_container > table > tbody > tr:first-of-type > td:first-of-type {
+    border-right: 2px solid black;
+    width:50%;
+}
+td {
+    padding:0;
+}
+#clock_bar {
+    height: 100px;
+    width: 100px;
+    animation: turn 3600s linear 1;
+}
+
 /* Result */
 
 
@@ -287,6 +310,20 @@ footer{
     0%{opacity:1;}
     50%{opacity:0;}
     100%{opacity: 1;}
+}
+@keyframes turn {
+    0%{transform:rotate(0);}
+    25%{transform:rotate(90deg);}
+    50%{transform:rotate(180deg);}
+    75%{transform:rotate(270deg);}
+    100%{transform:rotate(360deg);}
+}
+@keyframes timer_color {
+    0%{background-color: green;}
+    25%{background-color: greenyellow;}
+    50%{background-color: yellow;}
+    75%{background-color: orange;}
+    100%{background-color: red;}
 }
 #wrong_id
 {
